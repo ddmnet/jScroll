@@ -6,23 +6,27 @@ easily in single-page applications (think PhoneGap apps).
 
 ### How to use jScroll
 
-Include iScroll in the header (or footer).
-	```html
-	<script type='text/javascript' src='iscroll.js'></script>
-	```
-Include jScroll in the header (or footer).
-	```html
-	<script type='text/javascript' src='jScroll.js'></script>
-	```
-Attach to elements.
-	```javascript
-	$(".myelement").jScroll();  //Uses the default options.
-	$("p").jScroll({	 	    //With overidden options
-		lockDirection : false,
-		fadeScrollbar : true
-	});
-	$("#aDiv").jScroll({ remove : true });  //Removes iScroll from all elements in this set.
-	```
+##### Include iScroll in the header (or footer).
+
+```html
+<script type='text/javascript' src='iscroll.js'></script>
+```
+
+##### Include jScroll in the header (or footer).
+
+```html
+<script type='text/javascript' src='jScroll.js'></script>
+```
+
+##### Attach to elements.
+```js
+$(".myelement").jScroll();  //Uses the default options.
+$("p").jScroll({	 	    //With overidden options
+	lockDirection : false,
+	fadeScrollbar : true
+});
+$("#aDiv").jScroll({ remove : true });  //Removes iScroll from all elements in this set.
+```
 
 ### Todos
 
