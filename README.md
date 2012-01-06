@@ -30,4 +30,5 @@ $("#aDiv").jScroll("remove");  //Removes iScroll from all elements in this set.
 
 ### Todos
 
-* Add the ability to remove elements by saying ".jScroll('remove')".
+* Add pull to refresh.
+* Add pinch to zoom.
