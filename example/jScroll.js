@@ -1,26 +1,4 @@
 /**
-*	Copyright (C) 2011 by DDM Marketing & Communications
-*
-*	Permission is hereby granted, free of charge, to any person obtaining a copy
-*	of this software and associated documentation files (the "Software"), to deal
-*	in the Software without restriction, including without limitation the rights
-*	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*	copies of the Software, and to permit persons to whom the Software is
-*	furnished to do so, subject to the following conditions:
-*
-*	The above copyright notice and this permission notice shall be included in
-*	all copies or substantial portions of the Software.
-*
-*	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-*	THE SOFTWARE.
-*/
-
-/**
 * jScroll - A jQuery iScroll plugin.
 *
 * So what makes jScroll different?  Basically you don't need to have an
@@ -34,18 +12,29 @@
 *		lockDirection : false,
 *		fadeScrollbar : true
 *	});
-*	$("div").jScroll({ remove : true });  //Removes iScroll from all elements in this set.
+*	$("div").jScroll("remove");  //Removes iScroll from all elements in this set.
 *
 * It's not 100% fool-proof though.  It still relies on you knowing how to use iScroll.  If
 * you have questions about that, or about possible options, check out: http://cubiq.org/iscroll-4
 *
 * @author Jack Slingerland (jacks@teamddm.com)
 * @link http://www.teamddm.com
-* @version 0.2.2
+* @version 1.1
 */
 var iScrollers = [];
 (function($) {
-	$.fn.jScroll = function(customOptions) {
+	$.fn.jScroll = function() {
+		var customOptions = {},
+			action = "scroll";
+
+		//Determine what action we should be taking.
+		if(typeof arguments[0] == "string") {
+			action = arguments[0];
+			customOptions = arguments[1];
+		} else {
+			customOptions = arguments[0];
+		}
+
 		var options = $.extend({}, $.fn.jScroll.defaultOptions, customOptions);
 		return this.each(function() {
 			
@@ -57,7 +46,7 @@ var iScrollers = [];
 			}
 
 			//Check to see if we should be removing iScroll instances.
-			if(options.remove === true) {
+			if(action === "remove" || options.remove === true) {  //options.remove is here for backwards compatibility
 				remove_scroller(id);
 			} else {
 				//Create the iScroll objects, but first make sure it doesn't already exist.

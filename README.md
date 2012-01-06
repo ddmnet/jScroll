@@ -25,7 +25,7 @@ $("p").jScroll({	 	    //With overidden options
 	lockDirection : false,
 	fadeScrollbar : true
 });
-$("#aDiv").jScroll({ remove : true });  //Removes iScroll from all elements in this set.
+$("#aDiv").jScroll("remove");  //Removes iScroll from all elements in this set.
 ```
 
 ### Todos
