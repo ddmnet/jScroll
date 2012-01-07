@@ -32,3 +32,4 @@ $("#aDiv").jScroll("remove");  //Removes iScroll from all elements in this set.
 
 * Add pull to refresh.
 * Add pinch to zoom.
+* Add support for iOS 5 native scrolling.
