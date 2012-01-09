@@ -1,16 +1,17 @@
 /**
 * jScroll - A jQuery iScroll plugin.
 *
-* So what makes jScroll different?  Basically you don't need to have an
-* id on your element.  If one is there, jScroll will use it.  If there isn't
-* one there, jScroll will create an id (uuid) for it and use that.
+* So what makes jScroll different?  If you have iOS5, it will use native scrolling.  That, and
+* you don't need to have an id on your element.  If one is there, jScroll will use it.  If there 
+* isn't one there, jScroll will create an id (uuid) for it and use that.
 *
 * It works like this:
 *
 *	$("div").jScroll();  //Done like this, it uses the default options.
 *	$("div").jScroll({	 //Done like this, only those options are overridden.
 *		lockDirection : false,
-*		fadeScrollbar : true
+*		fadeScrollbar : true,
+*		forceIscroll : false
 *	});
 *	$("div").jScroll("remove");  //Removes iScroll from all elements in this set.
 *
@@ -21,10 +22,11 @@
 *
 * @author Jack Slingerland (jacks@teamddm.com)
 * @link http://www.teamddm.com
-* @version 1.2
+* @version 1.3
 */
 var iScrollers = [];
 (function($) {
+
 	$.fn.jScroll = function() {
 		var customOptions = {},
 			action = "scroll";
@@ -48,7 +50,7 @@ var iScrollers = [];
 			}
 
 			//Check to see if we're on iOS 5 so we can use native scrolling.
-			if(is_ios_5()) {
+			if(is_ios_5() && !options.forceIscroll) {
 
 				var type = "";
 				if(options.hScroll && !options.vScroll) {
@@ -99,6 +101,7 @@ var iScrollers = [];
 		bounce : true,
 		momentum : true,
 		lockDirection : false,
+		forceIscroll : false,
 		useTransition : false,  //Performance mode!
 		onBeforeScrollStart: function (e) {
 			var target = e.target;
@@ -124,6 +127,7 @@ var iScrollers = [];
 		} else {
 			$el.css("overflow", "scroll");
 		}
+
 		$el.css("-webkit-overflow-scrolling", "touch");
 	}
 
@@ -145,7 +149,8 @@ var iScrollers = [];
 	}
 
 	function is_ios_5() {
-		if(navigator.userAgent.match(/OS 5_\d like Mac OS X/i)) {
+		var ios5 = navigator.userAgent.match(/OS 5_[0-9_]+ like Mac OS X/i) != null;
+        if(ios5) {
 			return true;
 		} else {
 			return false;
@@ -153,7 +158,7 @@ var iScrollers = [];
 	}
 
 	function remove_native_scroller(id) {
-		$el = $("#"+id+":first-child");
+		$el = $("#"+id+":first");
 		if(type === "horizontal") {
 			$el.css("overflow-x", "");
 		} else if(type === "vertical") {
@@ -161,7 +166,7 @@ var iScrollers = [];
 		} else {
 			$el.css("overflow", "");
 		}
-		$el.css("-webkit-overflow-scrolling", "");
+		$el.removeClass("jScrollWebkit");
 	}
 
 	function remove_scroller(id) {
