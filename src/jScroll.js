@@ -22,7 +22,7 @@
 *
 * @author Jack Slingerland (jacks@teamddm.com)
 * @link http://www.teamddm.com
-* @version 1.3
+* @version 1.2
 */
 var iScrollers = [];
 (function($) {

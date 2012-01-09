@@ -2,7 +2,7 @@
   "name": "jScroll",
   "title" : "jScroll - An iScroll Plugin for jQuery",
   "description": "iScroll plugin for jQuery",
-  "version": "1.0",
+  "version": "1.2",
   "homepage": "http://blog.teamddm.com/2011/11/jscroll-an-iscroll-plugin-for-jquery/",
   "author": {
     "name" : "Jack Slingerland",
