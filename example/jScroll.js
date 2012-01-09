@@ -22,7 +22,7 @@
 *
 * @author Jack Slingerland (jacks@teamddm.com)
 * @link http://www.teamddm.com
-* @version 1.2
+* @version 1.2.1
 */
 var iScrollers = [];
 (function($) {
@@ -41,7 +41,6 @@ var iScrollers = [];
 
 		var options = $.extend({}, $.fn.jScroll.defaultOptions, customOptions);
 		return this.each(function() {
-
 			//Determine the id.  If one exists, use that.  Otherwise, create one.
 			var id = $(this).attr("id");
 			if(id === undefined || id === "") {
@@ -51,7 +50,6 @@ var iScrollers = [];
 
 			//Check to see if we're on iOS 5 so we can use native scrolling.
 			if(is_ios_5() && !options.forceIscroll) {
-
 				var type = "";
 				if(options.hScroll && !options.vScroll) {
 					type = "horizontal";
@@ -119,7 +117,7 @@ var iScrollers = [];
 	/* Private functions */
 
 	function add_native_scroller(id, type) {
-		$el = $("#"+id+":first-child");
+		$el = $("#"+id).children(0);
 		if(type === "horizontal") {
 			$el.css("overflow-x", "scroll");
 		} else if(type === "vertical") {
@@ -157,8 +155,8 @@ var iScrollers = [];
 		}
 	}
 
-	function remove_native_scroller(id) {
-		$el = $("#"+id+":first");
+	function remove_native_scroller(id, type) {
+		$el = $("#"+id).children(0);
 		if(type === "horizontal") {
 			$el.css("overflow-x", "");
 		} else if(type === "vertical") {
@@ -166,7 +164,7 @@ var iScrollers = [];
 		} else {
 			$el.css("overflow", "");
 		}
-		$el.removeClass("jScrollWebkit");
+		$el.css("-webkit-overflow-scrolling", "");
 	}
 
 	function remove_scroller(id) {
