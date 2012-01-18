@@ -21,11 +21,17 @@ easily in single-page applications (think PhoneGap apps).  By default, it also u
 ### Attach to elements.
 ```js
 $(".myelement").jScroll();  //Uses the default options.
+
 $("p").jScroll({	 	    //With overidden options
 	lockDirection : false,
 	fadeScrollbar : true
 });
+
 $("#aDiv").jScroll("remove");  //Removes iScroll from all elements in this set.
+
+$("div").jScroll({ //Adds pinch to zoom functionality on this div.
+	zoom : true
+});
 ```
 
 ### Available Options and their defaults
@@ -41,10 +47,6 @@ bounce : true
 momentum : true
 lockDirection : false
 forceIscroll : false
+zoom : false
 useTransition : false  //Performance mode!
 ```
-
-### Todos
-
-* Add pull to refresh.
-* Add pinch to zoom.

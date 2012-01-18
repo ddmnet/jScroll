@@ -14,6 +14,9 @@
 *		forceIscroll : false
 *	});
 *	$("div").jScroll("remove");  //Removes iScroll from all elements in this set.
+*	$("div").jScroll({ //Adds pinch to zoom functionality on this div.
+*		zoom : true
+*	});
 *
 * Note:  If you're using iOS5, the only valid options are vScroll & hScroll.
 *
@@ -22,7 +25,7 @@
 *
 * @author Jack Slingerland (jacks@teamddm.com)
 * @link http://www.teamddm.com
-* @version 1.2.1
+* @version 1.3.0
 */
 var iScrollers = [];
 (function($) {
@@ -100,6 +103,7 @@ var iScrollers = [];
 		momentum : true,
 		lockDirection : false,
 		forceIscroll : false,
+		zoom : false, //Pinch to zoom.
 		useTransition : false,  //Performance mode!
 		onBeforeScrollStart: function (e) {
 			var target = e.target;
